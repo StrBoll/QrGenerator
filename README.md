@@ -3,6 +3,7 @@ QR Generator that allows user to save QR codes as .svg or .png files from any li
 
 # if you are using an IDE like pycharm, then the file with your chosen name will save into the IDE project folder, not onto the desktop
 I will use 3 properties to generate a QR code for your link
+
 First, Error is used to set the error correction level
 
 Second, Mode sets the unique way in which the contents (your link) will be encoded
