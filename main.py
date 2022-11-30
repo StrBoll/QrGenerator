@@ -52,8 +52,7 @@ Enter 1 or 2 to choose file format: '''))
             file_name += '.png'
             link.png(file_name, scale=6)
             print(link.terminal(quiet_zone=1))
-            png_rendering = pyqrcode.create(user_input, error='L', version=3, mode='binary')
-            png_rendering.show()
+            
 
 # code for saving png file to pc and displaying qr code on screen
 # this can be customized in so many ways, and can even be configured to where a user could input their own customization
