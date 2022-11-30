@@ -12,3 +12,5 @@ Third, Version is used to specify data and size capacity
 
 Although this program is quite simple and short, it's main objective is to prove my own prowess in Python. I can do
 anything imaginable, a good coder is someone who is willing and able to find any solution to any problem via their own research and logic.
+
+![QRCode Demonstration](https://user-images.githubusercontent.com/116678181/204738162-be0eca95-0c87-4323-ac61-013b8dafcfd7.png)
