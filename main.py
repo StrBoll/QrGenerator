@@ -1,10 +1,48 @@
 import pyqrcode
 import png
 from pyqrcode import QRCode
+import requests
 
-user_input = input('Paste the link you would like to create a QR code for: ')
+#Check if the url is valid through a very simplified method
 
-link = pyqrcode.create(user_input)
+# if status of url returns 404, this means it does not work
+# however, there may be other errors with the link, so we make sure the link returns 200
+
+
+url = False
+
+# if you forget to paste the http part of the link, like many do when typing links like www.xyz.com, it will
+# automatically add it in for you
+
+header_check = 'https://'
+header_check2 = 'http://'
+
+while not url:
+    user_input = input('Paste the link you would like to create a QR code for: ')
+
+    if header_check in user_input or header_check2 in user_input:
+        continue
+    else:
+        user_input = header_check + user_input
+
+    try:
+        request = requests.get(user_input)
+        status = request.status_code
+
+        if status != 200:
+            raise Exception
+
+        # raising a general exception simply because here it is
+        # not necessary to call a specific error type for the try block
+
+        url = user_input
+
+    except Exception:
+        print('Url is broken, please check the link and re-enter\n')
+        url = False
+
+
+link = pyqrcode.create(url)
 
 # since there are characters that you cannot use while naming a file, we use a while loop try, except block
 
@@ -52,8 +90,7 @@ Enter 1 or 2 to choose file format: '''))
             file_name += '.png'
             link.png(file_name, scale=6)
             print(link.terminal(quiet_zone=1))
-            png_rendering = pyqrcode.create(user_input, error='L', version=3, mode='binary')
-            png_rendering.show()
+
 
 # code for saving png file to pc and displaying qr code on screen
 # this can be customized in so many ways, and can even be configured to where a user could input their own customization
