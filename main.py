@@ -30,14 +30,17 @@ while not url:
         status = request.status_code
 
         if status != 200:
-            raise Exception
+            raise ValueError
 
-        # raising a general exception simply because here it is
-        # not necessary to call a specific error type for the try block
+        # status 200 means the url is in good working condition
 
         url = user_input
 
-    except Exception:
+    except (ValueError, OSError):
+
+        # If there is a problem with the link being broken and unreachable all together, it is covered by OSError
+        # If the link returns status other than 200, it reports a ValueError
+
         print('Url is broken, please check the link and re-enter\n')
         url = False
 
